@@ -44,13 +44,13 @@
 
 
 
-            <iframe src="pickerImage.php" width="100%" height="660px" frameborder="0"></iframe>
+            <iframe src="pickerImage.php" width="100%" height="660px" frameborder="0" scrolling="no"></iframe>
 
 
         </div>
         <div class="col-md-3 round">
             <h1>Convertor</h1>
-            <iframe src="rgba.php" width="100%" height="660px" frameborder="0"></iframe>
+            <iframe src="rgba.php" width="100%" height="660px" frameborder="0" scrolling="no"></iframe>
 
 
         </div>

@@ -1,32 +1,13 @@
+<?php
+header("Cache-Control: no-cache, must-revalidate");
+?>
 <!DOCTYPE html>
 <html >
 
 <head>
     <meta charset="UTF-8">
 
-
-
-    <style>
-
-        input {
-            width:100%;
-            font-size: 2em;
-            text-align: center;
-            color: #fff;
-            background-color: #222;
-            border: 1px solid #444;
-            padding: 1px 2px;
-            margin-bottom: 20px;
-        }
-        #hex {
-
-            text-transform : uppercase;
-        }
-        #rgb {
-
-            text-transform : lowercase;
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
 
     <script>
         window.console = window.console || function(t) {};
@@ -44,9 +25,15 @@
 
 <body>
 
-<input type="text" placeholder="hex" id="hex">
-<input type="text" placeholder="rgba" id="rgb">
-<input type="text" placeholder="hsl" id="hsl">
+<div class="row">
+    <div class="col-md-12">
+        <pre></pre>
+        <input type="text" placeholder="hex" id="hex">
+        <input type="text" placeholder="rgba" id="rgb">
+        <input type="text" placeholder="hsl" id="hsl"></div>
+</div>
+
+
 <script src="//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js"></script>
 
 <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -81,7 +68,7 @@
                 $('#rgb').val(fail ? '' : 'rgba(' + rgb.join(',') + ',1)');
                 $('#hsl').val(fail ? '' : 'hsl(' + rgbToHsl.apply(null, rgb).join(',') + ')');
 
-                $('body').css('backgroundColor', $('#rgb').val());
+                $('pre').css('backgroundColor', $('#rgb').val());
             }, 13);
         });
 

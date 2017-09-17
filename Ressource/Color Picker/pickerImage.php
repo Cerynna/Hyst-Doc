@@ -1,3 +1,6 @@
+<?php
+header("Cache-Control: no-cache, must-revalidate");
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,7 +24,7 @@
 </head>
 <body>
 <form action="upload.php" method="post" class="form-inline" role="form" enctype="multipart/form-data">
-    <input type="hidden" name="MAX_FILE_SIZE" value="100000">
+    <input type="hidden" name="MAX_FILE_SIZE" value="500000">
     <input type="file" id="file" name="imagePicker"/>
     <label for="file" class="btn btn-default file">Changer l'image</label>
     <button class="btn btn-primary upload">Upload</button>
@@ -29,11 +32,18 @@
 
 </form>
 
-<canvas width="600" height="400" id="canvas_picker"></canvas>
+<div class="row">
+    <div class="col-md-12"><canvas width="610" height="350" id="canvas_picker"></canvas></div>
+</div>
+
+<pre></pre>
+
 <div id="hex"><input id="hex" type="text" placeholder="hex"></div>
 <div id="rgb"><input id="rgb" type="text" placeholder="rgba"></div>
 
+
 <script type="text/javascript">
+    var monCanvas = document.getElementById('canvas_picker');
 
     var canvas = document.getElementById('canvas_picker').getContext('2d');
 
@@ -43,8 +53,11 @@
 
     // copy the image to the canvas
     $(img).load(function(){
-        canvas.drawImage(img,0,0);
+        canvas.drawImage(img,(monCanvas.width / 2 - img.width / 2),(monCanvas.height / 2 - img.height / 2));
+        //canvas.drawImage(img,0,0);
     });
+
+
 
     // http://www.javascripter.net/faq/rgbtohex.htm
     function rgbToHex(R,G,B) {return toHex(R)+toHex(G)+toHex(B)}
@@ -68,10 +81,14 @@
         // making the color the value of the input
         $('#rgb input').val('rgba(' + rgb + ',1)');
         $('#hex input').val('#' + hex);
+        $('pre').css('backgroundColor', $('#rgb input').val());
     });
 
 
 </script>
+
+
+
 
 </body>
 </html>
