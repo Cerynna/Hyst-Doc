@@ -1,6 +1,16 @@
 <?php
+
+///FONCTION PNG TO JPG
+function png2jpg($originalFile, $outputFile, $quality) {
+    $image = imagecreatefrompng($originalFile);
+    imagejpeg($image, $outputFile, $quality);
+    imagedestroy($image);
+}
+
+
 $target_dir = "upload/";
-$target_file = $target_dir . basename($_FILES["imagePicker"]["name"]);
+$target_file = $target_dir . "imagePicker.jpg";
+unlink($target_file);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
@@ -25,9 +35,8 @@ if ($_FILES["imagePicker"]["size"] > 500000) {
     $uploadOk = 0;
 }
 // Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
+    echo "Sorry, only JPG, JPEG files are allowed.";
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
@@ -41,4 +50,9 @@ if ($uploadOk == 0) {
         echo "Sorry, there was an error uploading your file.";
     }
 }
+?>
+<img src="upload/imagePicker.jpg" />
+<?php
+header ("refresh: 1; URL=pickerImage.php");
+exit;
 ?>
