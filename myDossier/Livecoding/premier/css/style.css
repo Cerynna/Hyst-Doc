@@ -1,0 +1,11 @@
+.dead
+{
+    color: crimson;
+    text-decoration: line-through;
+}
+.tdPrenom {
+    text-transform : capitalize;
+}
+.tdNom {
+    text-transform : uppercase;
+}
